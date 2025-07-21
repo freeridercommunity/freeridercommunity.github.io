@@ -1,0 +1,25 @@
+.ripple {
+	position: relative;
+	overflow: hidden;
+}
+
+.ripple::before {
+	border-radius: 50%;
+    top: calc(var(--clientY) * 1px);
+	left: calc(var(--clientX) * 1px);
+    opacity: 0;
+    content: "";
+    padding: 50%;
+	position: absolute;
+    transform: translate(-50%, -50%) scale(3);
+	transition: transform 800ms, opacity 1s;
+    pointer-events: none;
+    background-color: #EEEEEE;
+}
+
+.ripple:not(.focus):active::before,
+.ripple.focus:active:not(:has(button:active)):not(button:focus-within)::before {
+	opacity: .5;
+    transition: 0s;
+    transform: translate(-50%, -50%) scale(0);
+}
